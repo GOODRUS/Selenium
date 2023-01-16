@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SeleniumPositiveTest {
+class SeleniumNegativeTest {
 
     private WebDriver driver;
     ChromeOptions options = new ChromeOptions();
@@ -39,17 +39,14 @@ class SeleniumPositiveTest {
     }
 
     @Test
-    void shouldTestPositive() throws InterruptedException {
+    void shouldTestNegative() throws InterruptedException {
         driver.get(" http://localhost:9999");
-        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Иван");
-        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79221573659");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Ivanov Ivan");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.tagName("button")).click();
-        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
+        String expected = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
+        String actual = driver.findElement(By.className("input__sub")).getText().trim();
         assertEquals(expected, actual);
     }
 }
-
-
-
