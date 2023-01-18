@@ -19,8 +19,6 @@ class SeleniumPositiveTest {
 
     @BeforeAll
     static void setUpAll() {
-        // убедитесь, что файл chromedriver.exe расположен именно в каталоге C:\tmpSystem.
-        //System.setProperty("webdriver.chrome.driver", "./driver/win/chromedriver.exe");
         WebDriverManager.chromedriver().setup();
     }
 
@@ -39,7 +37,7 @@ class SeleniumPositiveTest {
     }
 
     @Test
-    void shouldTestPositive() throws InterruptedException {
+    void shouldTestPositive() {
         driver.get(" http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Иван");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79221573659");
